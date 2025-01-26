@@ -69,7 +69,6 @@
 
                         localStorage.setItem('token', token)
 
-                        this.$router.push('/dashboard/my-account')
                     })
                     .catch(error => {
                         if (error.response) {
@@ -80,6 +79,32 @@
                             this.errors.push('Something went wrong. Please try again!')
                         }
                     })
+
+                await axios
+                    .get('/api/v1/users/me')
+                    .then(response => {
+                        this.$store.commit('setUser', {'id': response.data.id, 'username': response.data.username})
+
+                        localStorage.setItem('username', response.data.username)
+
+                        localStorage.setItem('userid', response.data.id)
+
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+
+                await axios
+                    .get('/api/v1/teams/get_my_team/')
+                    .then(response => {
+                        this.$store.commit('setTeam', {'id': response.data.id, 'name': response.data.name})
+
+                        this.$router.push('/dashboard/my-account')
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+
                 this.$store.commit('setIsLoading', false)
             }
         }
