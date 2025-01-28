@@ -56,7 +56,7 @@
         methods: {
             async getLeads() {
                 this.$store.commit('setIsLoading', true)
-                axios
+                await axios
                     .get('/api/v1/leads/')
                     .then(response => {
                         this.leads = response.data
