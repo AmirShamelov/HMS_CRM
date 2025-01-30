@@ -15,6 +15,7 @@
                 <table class="table is-fullwidth">
                     <thead>
                         <tr>
+                            <th>Username</th>
                             <th>Name</th>
                         </tr>
                     </thead>
@@ -25,6 +26,7 @@
                             v-bind:key="member.id"
                         >
                             <td>{{ member.username }}</td>
+                            <td>{{ member.first_name }} {{ member.last_name }}</td>
                         </tr>
                     </tbody>
                 </table>
