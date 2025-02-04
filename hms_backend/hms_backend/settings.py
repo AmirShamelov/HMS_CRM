@@ -22,6 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-94vyq&747@q(1f6a1ve(k)3-bg=c@izop-xzyg&@e6l1tgu+c0'
 
+#Stripe
+STRIPE_PUB_KEY = 'pk_test_51QoXT0PcJqCceYwAdTjBRR6mrmnZX1RgrJkdYGghsVfoh1oWQHViUbSWwDJJK3n5A6rBD84xcJ9FYDHxqv6S0j7800aBVpulSK'
+STRIPE_SECRET_KEY = 'sk_test_51QoXT0PcJqCceYwAvvmBKKbKM8JVO2PZReNQOaydjiH6rHzRtfUsW6bDujZ2uP8Duo7bjM2vb7gfz8jKexsIzuZb00rHXiX4ds'
+
+STRIPE_PRICE_ID_SMALL_TEAM = 'price_1Qol0uPcJqCceYwATdUH59bP'
+STRIPE_PRICE_ID_BIG_TEAM = 'price_1Qol1CPcJqCceYwAg8938Xj5'
+
+STRIPE_WEBHOOK_KEY = 'whsec_74be65925781a76586b51868dc5c22df68a1a174a24057d0184e1db6b2f267e5'
+
+FRONTEND_WEBSITE_SUCCESS_URL = 'http://localhost:5173/dashboard/team/plans/thankyou'
+FRONTEND_WEBSITE_CANCEL_URL = 'http://localhost:5173/dashboard/team/plans/'
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

@@ -50,17 +50,37 @@
 import axios from "axios"
 
 import {toast} from "bulma-toast"
+import {loadStripe} from "@stripe/stripe-js";
 
 export default {
     name: "Plans",
     data() {
         return {
-
+            pub_key: '',
+            stripe: null
         }
     },
-    mounted() {
+    async mounted() {
+        await this.getPubKey()
+
+        this.stripe = await loadStripe(this.pub_key)
     },
     methods: {
+        async getPubKey() {
+            this.$store.commit('setIsLoading', true)
+
+            await axios
+                .get(`/api/v1/stripe/get_stripe_pub_key/`)
+                .then(response => {
+                    this.pub_key = response.data.pub_key
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+            this.$store.commit('setIsLoading', false)
+        },
         async subscribe(plan) {
             this.$store.commit('setIsLoading', true)
 
@@ -68,7 +88,19 @@ export default {
                 plan: plan
             }
 
-            await axios
+            axios
+                .post('/api/v1/stripe/create_checkout_session/', data)
+                .then(response => {
+                    console.log(response)
+
+                    return this.stripe.redirectToCheckout({sessionId: response.data.sessionId})
+                })
+                .catch(error => {
+                    console.log('Error:',  error)
+                })
+
+
+            /*await axios
                 .post(`/api/v1/teams/upgrade_plan/`, data)
                 .then(response => {
                     console.log('Upgraded plan')
@@ -96,7 +128,7 @@ export default {
                 })
                 .catch(error => {
                     console.log(error)
-                })
+                })*/
             this.$store.commit('setIsLoading', false)
         }
     }
