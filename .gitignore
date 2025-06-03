@@ -1,6 +1,7 @@
+.env
 .venv1
 .idea
 .vscode
 __pycache__
 db.sqlite3
-node_modules
+node_modulestemp_file.log
