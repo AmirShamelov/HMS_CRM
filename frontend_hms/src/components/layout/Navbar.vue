@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-dark">
+    <nav class="navbar">
         <div class="navbar-brand">
             <router-link to="/" class="navbar-item">
                 <font-awesome-icon class="navbar-icon" icon="fa-solid fa-hospital" />
@@ -38,6 +38,11 @@
 </script>
 
 <style scoped>
+
+.navbar {
+    background-color: #2c3e50;
+}
+
 .navbar-icon {
     font-size: 40px;
 }

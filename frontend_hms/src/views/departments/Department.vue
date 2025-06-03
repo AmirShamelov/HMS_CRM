@@ -251,6 +251,7 @@ export default {
     background-color: #F0F8FF;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
+
 /* Карточка отделения */
 .department-card {
     background: white;
@@ -417,59 +418,111 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .modal-content {
     background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 400px;
-    max-width: 90%;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(30, 144, 255, 0.2);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-content h3 {
-    margin-top: 0;
+    color: #1e90ff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 .field {
-    margin-bottom: 15px;
+    margin-bottom: 1.2rem;
 }
 
 .field label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
 }
 
 .field input,
+.field select,
 .field textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: #1e90ff;
+    box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
+}
+
+.field textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
 .modal-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button.is-success:hover {
+    transform: translateY(-2px);
 }
 
 
 .cancel-button {
-    background-color: #ff3860;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    background-color: white;
+    color: #1e90ff;
+    border: 1px solid #1e90ff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .cancel-button:hover {
-    background-color: #e03157;
+    background-color: #f0f8ff;
+    transform: translateY(-2px);
 }
 </style>
